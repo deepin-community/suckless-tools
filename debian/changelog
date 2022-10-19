@@ -1,0 +1,639 @@
+suckless-tools (46-1) unstable; urgency=medium
+
+  * New upstream release
+    - Update dmenu to version 5.0 (Closes: 975553)
+  * Bump debhelper compat level to 13
+  * Bump Standards-Version to 4.5.1
+  * Update d/copyright file (bump Copyright years)
+
+ -- Ilias Tsitsimpis <iliastsi@debian.org>  Sat, 28 Nov 2020 17:14:20 +0200
+
+suckless-tools (45-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/changelog: Remove trailing whitespaces
+
+  [ Ilias Tsitsimpis ]
+  * New upstream release
+    - Update dmenu to version 4.9
+  * Update patches to apply cleanly on new upstream
+  * Set Rules-Requires-Root to no
+  * Update d/copyright file (bump Copyright years)
+  * Bump debhelper compat level to 12
+  * Use the debhelper-compat build-dependency and remove d/compat
+  * Bump Standards-Version to 4.5.0
+  * Remove libcap2-bin dependency on non-linux.
+    Thanks to Nicolas Schier for the patch (Closes: 922606)
+
+ -- Ilias Tsitsimpis <iliastsi@debian.org>  Mon, 02 Mar 2020 19:42:59 +0200
+
+suckless-tools (44-1) unstable; urgency=low
+
+  * New upstream release
+    - Update dmenu to version 4.8
+  * Bump debhelper compat level to 11
+  * Modify d/control and d/copyright to use HTTPS
+  * Update Vcs-* to point to salsa.debian.org
+  * Update d/copyright file (bump Copyright years)
+  * Remove obsolete get-orig-source rules target
+  * Bump Standards-Version to 4.1.4
+
+ -- Ilias Tsitsimpis <iliastsi@debian.org>  Fri, 01 Jun 2018 13:16:24 +0300
+
+suckless-tools (43-1) unstable; urgency=low
+
+  [ Ilias Tsitsimpis ]
+  * New upstream release
+    - Update dmenu to version 4.7
+    - Update slock to version 1.4
+  * Remove lsx.
+    The lsx tool has been removed from the upstream repo and is not
+    supported anymore.
+  * Update my email address
+  * Bump Standards-Version to 4.0.0, no changes needed
+  * Bump dependency on debhelper to >= 10
+  * Bump debhelper compat level to 10
+  * Update d/copyright file.
+    Add slock/explicit_bzero.c and bump copyright years.
+  * Update d/patches
+    - Use the following patches for slock, from upstream's git repo:
+        (7a604ec1f) Fix resize with multiple monitors and portrait mode
+        (35633d456) Properly clear the last entered character
+        (0ff0d9f7a) there can only be one window in the event
+    - Remove `drop privileges` code from slock, since it runs without setuid
+    - Update rest of the patches to apply cleanly
+  * Fix FTCBFS.
+    Remove explicit invocation of `strip` and `pkg-config`.
+    Thanks to Helmut Grohne for providing the patch (Closes: #861341)
+  * Fix typo in ssid(1) manpage
+
+  [ Barak A. Pearlmutter ]
+  * Fix typo in package description, missing s in similar (Closes: #857254)
+
+ -- Ilias Tsitsimpis <iliastsi@debian.org>  Fri, 04 Aug 2017 20:05:33 +0300
+
+suckless-tools (42-2) unstable; urgency=medium
+
+  * Bump Standards-Version to 3.9.8, no changes needed
+  * Fix FTBFS on hurd-i386.
+    Add patch to define the PATH_MAX macro in case it is missing.
+    (Closes: #815357)
+
+ -- Ilias Tsitsimpis <i.tsitsimpis@gmail.com>  Sun, 19 Jun 2016 13:33:12 +0300
+
+suckless-tools (42-1) unstable; urgency=medium
+
+  * New upstream release
+    - Update dmenu to version 4.6
+    - Update slock to version 1.3
+  * Update d/watch file to use the version 4 format.
+    The new version=4 enables handling of multiple upstream tarball
+    (MUT) packages.
+  * Simplify get-orig-source rule.
+    Let the new version 4 format of d/watch do the hard work.
+  * Add libxrandr-dev to build dependencies.
+    The new version of slock needs to be linked against the Xrandr library
+    in order to resize the cover window when new screens are added.
+  * Pass create-empty-orig to d/source/local-options
+  * Update d/patches to apply cleanly.
+    Also, rename the patch files in order to not be prefixed with a number.
+  * Update d/copyright file.
+    Bump copyright years for slock/* and debian/* files.
+  * Bump Standards-Version to 3.9.7, no changes needed
+  * Remove d/manpages/slock.1.
+    A manpage for slock is now provided by upstream.
+  * d/patches: Remove useless dependency against Xext library
+  * Enable all hardening options.
+    Fix hardening-no-pie and hardening-no-bindnow lintian messages.
+  * Do not include '/usr/share/dpkg/default.mk' in d/rules.
+    Since we are using debhelper v9 format, there is no need to include the
+    'buildflags.mk' or export the buildflags because they are automatically
+    passed during calls to dh_auto_* programs.
+  * Use 'https://' instead of 'git://' in Vcs-Git field.
+    Fix vcs-field-uses-insecure-uri lintian warning.
+
+ -- Ilias Tsitsimpis <i.tsitsimpis@gmail.com>  Wed, 17 Feb 2016 15:06:25 +0200
+
+suckless-tools (41-1) unstable; urgency=medium
+
+  * New upstream release
+    - Import dmenu snapshot version 4.6 (git commit 09d0a36e0)
+    - Import lsw version 0.3
+    - Import slock version 1.2
+    - Import tabbed version 0.6
+    (Closes: #783621, #766258, #746605, #611535, #703025)
+  * Propagate the changes from experimental (40-2) to unstable
+  * Build depend on a newer version of dpkg-dev.
+    Version (>= 1.17) of dpkg-dev is needed in order to use
+    the -S option of dpkg-parsechangelog.
+  * Use d/watch file to track newer versions
+  * Provide a 'get-orig-source' rule based on uscan
+  * Use --trace option to print recipes to be executed
+  * Use alioth's cgit interface in the Vcs-Browser field
+  * New maintainer (Closes: #776482)
+  * Update d/copyright entries
+  * Remove unused lsw.1 manpage
+  * Update version number in sselp.1 manpage
+  * Update version number in slock.1 manpage
+  * Remove ncurses-bin from build dependencies
+  * Add pkg-config to build dependencies
+  * Remove 2003_transparent-makefiles patch.
+    Instead, use Makefile's '--trace' option
+  * Update d/patches
+    - Use gbp-pq patch format
+    - Fix patches to apply cleanly on newer versions
+    - Update patches to contain embedded index information
+  * Drop d/local/dmenu.xft patch, fixed upstream
+  * Move d/local/tabbed.meta under d/patches.
+    Use d/patches instead of custom rules in order to build
+    alternative version of tabbed with Windows key as Mod key.
+  * Remove dmenu alternatives.
+    Use 'preinst upgrade', 'postrm abort-upgrade' to remove dmenu
+    alternatives during upgrade to newer version.
+  * Update d/rules to build newer version
+  * Override debian-watch-file-specifies-old-upstream-version warning
+  * Remove README.source since it's not relevant anymore
+  * lsw: Apply 'segfault avoidance' patch from upstream
+  * Override 'binary-without-manpage' for alternatives
+  * Add manpage for dmenu_path executable
+  * Add libcap2-bin to package dependencies
+  * Set CAP_SYS_RESOURCE for the slock binary.
+    Update d/README.slock.Debian to state the above change.
+  * Override 'no-upstream-changelog' lintian warning
+  * Drop 'fix_setuid_slock' patch.
+    Slock will use PAM, so it doesn't need setuid.
+  * slock: Don't exit if failed to adjust OOM score
+  * Add libpam0g-dev to build dependencies
+  * slock: Use PAM for authentication.
+    Thanks to Brad Jorsch for the patch (Closes: #739629)
+  * Ship PAM configuration file under '/etc/pam.d/slock'
+  * Remove obsolete 'setgid-binary' lintian override
+  * Document PAM authentication for slock in d/NEWS
+
+ -- Ilias Tsitsimpis <i.tsitsimpis@gmail.com>  Thu, 15 Oct 2015 11:50:24 +0300
+
+suckless-tools (40-2) experimental; urgency=medium
+
+  * Fix link for dmenu man page in dmenu_run.1.
+    Closes: bug#774955, Thanks to Jakub Wilk.
+  * Bump Standards-Version to 3.9.6, no change to source package.
+
+ -- Vasudev Kamath <kamathvasudev@gmail.com>  Sat, 24 Jan 2015 12:06:47 +0530
+
+suckless-tools (40-1) unstable; urgency=low
+
+  * Suggest surf which can be used with tabbed.
+    Closes: bug#703028.
+  * Included the xssstate utility, thanks to Alessandro
+    Ghedini.
+    Closes: bug#707617.
+  * Imported new version of tabbed (0.5).
+  * New build-dependency for xssstate on libxss-dev (xscreensaver) is
+    added.
+  * Updated Provides and long description in debian/control to reflect
+    inclussion of xssstate utility.
+  * Updated debian/copyright file to include copyright statement for
+    xssstate utility.
+  * Added Xft alternative for dmenu, thanks to Javier P.L.
+    Closes: bug#696703.
+  * New build-dependency on libxft-dev, libfreetype6-dev is added for
+    allowing dmenu.xft alternative.
+  * Provided meta key alternative for tabbed, thanks to Vincent Lefevre.
+    Closes: bug#703027.
+  * Removed TERMINFO environment setting during building of tools, we are
+    no longer shipping st as part of this package which needed this.
+  * Use canonical URL anonscm.d.o for Vcs-Git field.
+  * Use suckless-tools.manpages to install debian shipped manpages only
+    for the binaries to which upstream does not provide a manpage.
+  * Renamed the patches to follow micro guidelines in
+    debian/patches/README.
+  * Updated README.source file.
+  * Add patch 2004, removes custom library and include search paths by
+    upstream, fixes FTBFS on mipsel*.
+    Closes: bug#722839. Thanks to YunQuian Su.
+  * Upload to unstable.
+
+ -- Vasudev Kamath <kamathvasudev@gmail.com>  Sat, 27 Jul 2013 21:55:49 +0530
+
+suckless-tools (39-1) experimental; urgency=low
+
+  [ Michael Stummvoll ]
+  * Added manpage for dmenu_run (Closes: #610478)
+  * Updated manpages for slock, ssid, swarp and wmname (Closes: #636030)
+  * Updated manpage for sselp (Closes: #378175)
+  * Removed st from the package. Suggests stterm now. Since st is
+    no longer part of this package it doesn't install st.256color.
+    (Closes: #642307,#665884)
+  * Fixed a typo in the wmname manpage
+  * Added some docs
+
+  [ Vasudev Kamath ]
+  * debian/control:
+    + Increased minimum debhelper required to 9
+    + Bumped Standards-Version to 3.9.4. This did not require any change
+      to package.
+    + Added Michael Stummvoll as Uploader
+    + Added dependency on dpkg-dev >= 1.16.1.1 to introduce hardening flags
+      using dpkg-buildflags.
+  * Set debian/compat to 9
+  * Created new version 39
+    + Imported new version of lsw (Closes: #650573)
+    + Updated dmenu (Closes: #650574, #658386)
+    + Added sprop and lsx (Closes: #627662)
+    + Imported new version of slock. This resolves CVE-2012-1620
+      (Closes: #667796, #692737)
+    + Imported new version of tabbed
+  * debian/rules:
+    + Added get-orig-source target to get upstream source tarball for included
+      package
+  * debian/patches:
+    + Added patch to do setgid shadow instead of setuid root on slock Makefile
+     (01_fix_setuid_slock.patch).
+    + Added patch to introduce hardening flags and allow DEB_BUILD_OPTIONS=noopt
+     (02_dpkg-buildflags.patch).
+    + Added patch to make command execution visible in Makefiles
+     (03_transparent-makefiles.patch).
+    + Added patch to escape '-' symbol in manpage for tabbed and use temp files
+      in secure way (04_tabbed-manpage-hyphen-fix.patch).
+  * debian/README.source:
+    + Updated this file with proper instruction on how to recreate the original
+      source tarballs required for package building.
+  * debian/create_orig_source shell script is added which will be invoked when
+    get-orig-source target in debian/rules is invoked
+  * debian/watch:
+    + Empty watch file added with only version=3 string in it to avoid lintian
+      warning
+  * debian/README.slock.Debian:
+    + This file is added giving instruction on how to use the slock command.
+  * debian/copyright:
+    + Fixed the Copyright fields for lsw, dmenu, tabbed.
+    + Changed short license name from MIT to Expat.
+  * Switched to source format 3.0 (quilt)
+
+ -- Vasudev Kamath <kamathvasudev@gmail.com>  Thu, 15 Nov 2012 12:28:34 +0530
+
+suckless-tools (38-2) unstable; urgency=low
+
+  * debian/control:
+    + Added myself as maintainer. (Closes: #647090)
+    + Vcs-* fields now points to repository on collab-maint
+  * debian/copyright:
+    + Added copyright-format 1.0 header fields (Closes: #685611)
+    + Fixed the license of st, it was mentioned as MIT but in reality
+      it was 3-Clause BSD license.
+    + Removed commas between file names in Files: section for lsw,swarp
+      and sselp
+
+ -- Vasudev Kamath <kamathvasudev@gmail.com>  Sun, 14 Oct 2012 16:04:43 +0530
+
+suckless-tools (38-1) unstable; urgency=low
+
+  * Fix "FTBFS: /home/buildd/.terminfo: permission denied (errno 2)"
+    <Added TERMINFO arg> (Closes: #605816)
+  * Updated st
+
+ -- Kai Hendry <hendry@iki.fi>  Sun, 05 Dec 2010 13:54:15 +0000
+
+suckless-tools (37-1) unstable; urgency=low
+
+  * New maintainer
+  * Include simple terminal
+
+ -- Kai Hendry <hendry@iki.fi>  Thu, 02 Dec 2010 13:42:55 +0000
+
+suckless-tools (36-2) experimental; urgency=low
+
+  * Switching to source format 3.0 (quilt).
+
+ -- Daniel Baumann <daniel@debian.org>  Mon, 29 Nov 2010 21:17:34 +0100
+
+suckless-tools (36-1) experimental; urgency=low
+
+  * Merging upstream version 36.
+  * Rediffing strip.patch
+  * Removing old transitional package.
+
+ -- Daniel Baumann <daniel@debian.org>  Sun, 21 Nov 2010 22:38:44 +0100
+
+suckless-tools (35-2) experimental; urgency=low
+
+  * Updating standards version to 3.9.0.
+  * Correcting typo in package description, thanks to David Stansby
+    <dstansby@gmail.com> (Closes: #601346).
+  * Updating to standards version 3.9.1.
+  * Updating to debhelper version 8.
+  * Switching to source format 3.0 (quilt).
+
+ -- Daniel Baumann <daniel@debian.org>  Sat, 20 Nov 2010 17:37:38 +0100
+
+suckless-tools (35-1) unstable; urgency=low
+
+  * Merging upstream version 35.
+  * Updating year in copyright file.
+
+ -- Daniel Baumann <daniel@debian.org>  Sat, 05 Jun 2010 10:01:46 +0200
+
+suckless-tools (34-1) unstable; urgency=low
+
+  * Merging upstream version 34.
+
+ -- Daniel Baumann <daniel@debian.org>  Sat, 29 May 2010 20:04:16 +0200
+
+suckless-tools (33-1) unstable; urgency=low
+
+  * Adding explicit debian source version 1.0 until switch to 3.0.
+  * Updating year in copyright file.
+  * Updating to standards 3.8.4.
+  * Merging upstream version 33.
+  * Updating dmenu copyright stanza.
+
+ -- Daniel Baumann <daniel@debian.org>  Sat, 29 May 2010 14:42:39 +0200
+
+suckless-tools (32-1) unstable; urgency=low
+
+  * Merging upstream version 32.
+  * Renaming package to suckless-tools (Closes: #529375).
+  * Don't strip binaries by default (Closes: #436783).
+  * Adding lintian overrides.
+
+ -- Daniel Baumann <daniel@debian.org>  Sat, 21 Nov 2009 12:45:59 +0100
+
+dwm-tools (31-1) unstable; urgency=low
+
+  * Adding maintainer homepage field to control.
+  * Marking maintainer homepage field to be also included in binary
+    packages and changelog.
+  * Adding README.source.
+  * Merging upstream version 31.
+  * Moving upstream maintainer field from control to copyright.
+  * Bumping versioned build-depends on debhelper.
+  * Adding tabbed to provides.
+  * Updating README.source.
+  * Adding tabbed in copyright.
+
+ -- Daniel Baumann <daniel@debian.org>  Sat, 31 Oct 2009 22:58:51 +0100
+
+dwm-tools (30-2) unstable; urgency=low
+
+  * Prefixing debhelper files with package name.
+  * Updating maintainer field.
+  * Updating vcs fields.
+  * Updating package to standards version 3.8.3.
+  * Sorting depends.
+  * Updating year in copyright file.
+  * Minimizing rules file.
+
+ -- Daniel Baumann <daniel@debian.org>  Thu, 20 Aug 2009 20:11:47 +0200
+
+dwm-tools (30-1) unstable; urgency=low
+
+  * Replacing obsolete dh_clean -k with dh_prep.
+  * Merging upstream version 30.
+  * Updating versions in rules.
+  * Using correct rfc-2822 date formats in changelog.
+
+ -- Daniel Baumann <daniel@debian.org>  Mon, 18 May 2009 12:05:19 +0200
+
+dwm-tools (29-1) unstable; urgency=low
+
+  * Updating versions in rules.
+
+ -- Daniel Baumann <daniel@debian.org>  Wed, 05 Nov 2008 20:52:00 +0100
+
+dwm-tools (28-2) unstable; urgency=low
+
+  * Adding libxinerama-dev to build-depends (Closes: #493995).
+
+ -- Daniel Baumann <daniel@debian.org>  Fri, 08 Aug 2008 05:10:00 +0200
+
+dwm-tools (28-1) unstable; urgency=low
+
+  * Updating versions in rules.
+  * Merging upstream version 28 (Closes: #487186).
+
+ -- Daniel Baumann <daniel@debian.org>  Sun, 03 Aug 2008 18:05:00 +0200
+
+dwm-tools (27-1) unstable; urgency=low
+
+  * Rewriting rules file.
+  * Updating formatting of the manpages.
+  * Adding manpage for wmname.
+  * Rewriting copyright file in machine-interpretable format.
+  * Adding provides for wmname.
+  * Adding vcs fields in control file.
+  * Using lintian debhelper to install lintian overrides.
+  * Upgrading package to standards 3.8.0.
+  * Updating package to debhelper 7.
+  * Updating versions in rules.
+  * Merging upstream version 27.
+
+ -- Daniel Baumann <daniel@debian.org>  Sun, 03 Aug 2008 17:55:00 +0200
+
+dwm-tools (26-2) unstable; urgency=low
+
+  * Bumped to new policy.
+  * Using homepage field in control.
+  * Removing old conflicts/replaces.
+  * Don't hide make errors in clean target of rules.
+
+ -- Daniel Baumann <daniel@debian.org>  Thu, 27 Dec 2007 09:38:00 +0100
+
+dwm-tools (26-1) unstable; urgency=low
+
+  * slock:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Sun, 25 Nov 2007 14:11:00 +0100
+
+dwm-tools (25-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Fri, 16 Nov 2007 12:09:00 +0100
+
+dwm-tools (24-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release (Closes: #446559).
+
+ -- Daniel Baumann <daniel@debian.org>  Sun, 14 Oct 2007 09:13:00 +0200
+
+dwm-tools (23-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Fri, 01 Jun 2007 18:54:00 +0200
+
+dwm-tools (22-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Mon, 21 May 2007 15:37:00 +0200
+
+dwm-tools (21-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Thu, 19 Apr 2007 10:24:00 +0200
+
+dwm-tools (20-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+  * slock:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Wed, 07 Mar 2007 17:23:00 +0100
+
+dwm-tools (19-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+  * slock:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Mon, 05 Mar 2007 15:21:00 +0100
+
+dwm-tools (18-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release:
+
+ -- Daniel Baumann <daniel@debian.org>  Thu, 01 Mar 2007 17:56:00 +0100
+
+dwm-tools (17-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release:
+
+ -- Daniel Baumann <daniel@debian.org>  Sat, 24 Feb 2007 19:03:00 +0100
+
+dwm-tools (16-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release:
+
+ -- Daniel Baumann <daniel@debian.org>  Fri, 23 Feb 2007 21:15:00 +0100
+
+dwm-tools (15-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release:
+
+ -- Daniel Baumann <daniel@debian.org>  Fri, 23 Feb 2007 20:26:00 +0100
+
+dwm-tools (14-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release:
+      + replaces lsx.
+
+ -- Daniel Baumann <daniel@debian.org>  Fri, 23 Feb 2007 10:59:00 +0100
+
+dwm-tools (13-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Wed, 21 Feb 2007 13:02:00 +0100
+
+dwm-tools (12-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Wed, 13 Jan 2007 10:19:00 +0100
+
+dwm-tools (11-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Wed, 17 Jan 2007 11:15:00 +0100
+
+dwm-tools (10-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Tue, 16 Jan 2007 15:54:00 +0100
+
+dwm-tools (9-1) unstable; urgency=high
+
+  * slock:
+    - New upstream release, fixes potential buffer overflow.
+
+ -- Daniel Baumann <daniel@debian.org>  Sat, 13 Jan 2007 15:41:00 +0100
+
+dwm-tools (8-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Fri, 12 Jan 2007 21:47:00 +0100
+
+dwm-tools (7-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Tue, 19 Dec 2006 12:08:00 +0100
+
+dwm-tools (6-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Thu, 14 Dec 2006 10:50:00 +0100
+
+dwm-tools (5-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Thu, 14 Dec 2006 09:30:00 +0100
+
+dwm-tools (4-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Thu, 07 Dec 2006 16:05:00 +0100
+
+dwm-tools (3-1) unstable; urgency=low
+
+  * dmenu:
+    - New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Thu, 30 Nov 2006 14:47:00 +0100
+
+dwm-tools (2-1) unstable; urgency=medium
+
+  * slock:
+    - New upstream release.
+    - it's now save to use it with setuid, hence dropped the suid-remove patch.
+
+ -- Daniel Baumann <daniel@debian.org>  Fri, 11 Nov 2006 18:37:00 +0200
+
+dwm-tools (1.4-1) unstable; urgency=medium
+
+  * Merged dmenu into dwm-tools.
+
+ -- Daniel Baumann <daniel@debian.org>  Tue, 31 Oct 2006 12:14:00 +0200
+
+dwm-tools (0.2-1) unstable; urgency=low
+
+  * slock: New upstream release.
+
+ -- Daniel Baumann <daniel@debian.org>  Mon, 16 Oct 2006 17:19:00 +0200
+
+dwm-tools (0.1-1) unstable; urgency=low
+
+  * Initial release.
+  * Added manpages.
+
+ -- Daniel Baumann <daniel@debian.org>  Thu, 12 Oct 2006 12:16:00 +0200
